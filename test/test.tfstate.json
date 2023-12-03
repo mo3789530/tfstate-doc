@@ -1,0 +1,2094 @@
+{
+    "version": 4,
+    "terraform_version": "0.13.3",
+    "serial": 9,
+    "lineage": "4afbb278-c8a6-6e81-4ed6-73a3d56bded2",
+    "outputs": {
+        "cluster_name": {
+            "value": "octopusx-grid-5",
+            "type": "string"
+        },
+        "region": {
+            "value": "eu-west-1",
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "mode": "data",
+            "type": "aws_availability_zones",
+            "name": "available",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "all_availability_zones": null,
+                        "exclude_names": null,
+                        "exclude_zone_ids": null,
+                        "filter": null,
+                        "group_names": [
+                            "eu-west-1"
+                        ],
+                        "id": "eu-west-1",
+                        "names": [
+                            "eu-west-1a",
+                            "eu-west-1b",
+                            "eu-west-1c"
+                        ],
+                        "state": null,
+                        "zone_ids": [
+                            "euw1-az1",
+                            "euw1-az2",
+                            "euw1-az3"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "mode": "data",
+            "type": "aws_eks_cluster",
+            "name": "cluster",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "mode": "data",
+            "type": "aws_eks_cluster_auth",
+            "name": "cluster",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "mode": "managed",
+            "type": "aws_security_group",
+            "name": "all_worker_mgmt",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "mode": "managed",
+            "type": "aws_security_group",
+            "name": "worker_group_mgmt_one",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "mode": "managed",
+            "type": "aws_security_group",
+            "name": "worker_group_mgmt_two",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "mode": "managed",
+            "type": "random_string",
+            "name": "suffix",
+            "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "id": "PY0IOoUt",
+                        "keepers": null,
+                        "length": 8,
+                        "lower": true,
+                        "min_lower": 0,
+                        "min_numeric": 0,
+                        "min_special": 0,
+                        "min_upper": 0,
+                        "number": true,
+                        "override_special": null,
+                        "result": "PY0IOoUt",
+                        "special": false,
+                        "upper": true
+                    },
+                    "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_ami",
+            "name": "eks_worker",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "architecture": "x86_64",
+                        "arn": "arn:aws:ec2:eu-west-1::image/ami-0c504dda1302b182f",
+                        "block_device_mappings": [
+                            {
+                                "device_name": "/dev/xvda",
+                                "ebs": {
+                                    "delete_on_termination": "true",
+                                    "encrypted": "false",
+                                    "iops": "0",
+                                    "snapshot_id": "snap-09938c763c7edefe2",
+                                    "volume_size": "20",
+                                    "volume_type": "gp2"
+                                },
+                                "no_device": "",
+                                "virtual_name": ""
+                            }
+                        ],
+                        "creation_date": "2020-10-07T22:14:18.000Z",
+                        "description": "EKS Kubernetes Worker AMI with AmazonLinux2 image, (k8s: 1.17.11, docker:19.03.6ce-4.amzn2)",
+                        "executable_users": null,
+                        "filter": [
+                            {
+                                "name": "name",
+                                "values": [
+                                    "amazon-eks-node-1.17-v*"
+                                ]
+                            }
+                        ],
+                        "hypervisor": "xen",
+                        "id": "ami-0c504dda1302b182f",
+                        "image_id": "ami-0c504dda1302b182f",
+                        "image_location": "amazon/amazon-eks-node-1.17-v20201007",
+                        "image_owner_alias": "amazon",
+                        "image_type": "machine",
+                        "kernel_id": null,
+                        "most_recent": true,
+                        "name": "amazon-eks-node-1.17-v20201007",
+                        "name_regex": null,
+                        "owner_id": "602401143452",
+                        "owners": [
+                            "amazon"
+                        ],
+                        "platform": null,
+                        "product_codes": [],
+                        "public": true,
+                        "ramdisk_id": null,
+                        "root_device_name": "/dev/xvda",
+                        "root_device_type": "ebs",
+                        "root_snapshot_id": "snap-09938c763c7edefe2",
+                        "sriov_net_support": "simple",
+                        "state": "available",
+                        "state_reason": {
+                            "code": "UNSET",
+                            "message": "UNSET"
+                        },
+                        "tags": {},
+                        "virtualization_type": "hvm"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_ami",
+            "name": "eks_worker_windows",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "architecture": "x86_64",
+                        "arn": "arn:aws:ec2:eu-west-1::image/ami-063e2e57ed84117a1",
+                        "block_device_mappings": [
+                            {
+                                "device_name": "/dev/sda1",
+                                "ebs": {
+                                    "delete_on_termination": "true",
+                                    "encrypted": "false",
+                                    "iops": "0",
+                                    "snapshot_id": "snap-0536514b14a7b841b",
+                                    "volume_size": "50",
+                                    "volume_type": "gp2"
+                                },
+                                "no_device": "",
+                                "virtual_name": ""
+                            },
+                            {
+                                "device_name": "xvdca",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral0"
+                            },
+                            {
+                                "device_name": "xvdcb",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral1"
+                            },
+                            {
+                                "device_name": "xvdcc",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral2"
+                            },
+                            {
+                                "device_name": "xvdcd",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral3"
+                            },
+                            {
+                                "device_name": "xvdce",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral4"
+                            },
+                            {
+                                "device_name": "xvdcf",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral5"
+                            },
+                            {
+                                "device_name": "xvdcg",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral6"
+                            },
+                            {
+                                "device_name": "xvdch",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral7"
+                            },
+                            {
+                                "device_name": "xvdci",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral8"
+                            },
+                            {
+                                "device_name": "xvdcj",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral9"
+                            },
+                            {
+                                "device_name": "xvdck",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral10"
+                            },
+                            {
+                                "device_name": "xvdcl",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral11"
+                            },
+                            {
+                                "device_name": "xvdcm",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral12"
+                            },
+                            {
+                                "device_name": "xvdcn",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral13"
+                            },
+                            {
+                                "device_name": "xvdco",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral14"
+                            },
+                            {
+                                "device_name": "xvdcp",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral15"
+                            },
+                            {
+                                "device_name": "xvdcq",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral16"
+                            },
+                            {
+                                "device_name": "xvdcr",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral17"
+                            },
+                            {
+                                "device_name": "xvdcs",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral18"
+                            },
+                            {
+                                "device_name": "xvdct",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral19"
+                            },
+                            {
+                                "device_name": "xvdcu",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral20"
+                            },
+                            {
+                                "device_name": "xvdcv",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral21"
+                            },
+                            {
+                                "device_name": "xvdcw",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral22"
+                            },
+                            {
+                                "device_name": "xvdcx",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral23"
+                            },
+                            {
+                                "device_name": "xvdcy",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral24"
+                            },
+                            {
+                                "device_name": "xvdcz",
+                                "ebs": {},
+                                "no_device": "",
+                                "virtual_name": "ephemeral25"
+                            }
+                        ],
+                        "creation_date": "2020-10-30T21:01:23.000Z",
+                        "description": "Microsoft Windows Server 2019 Core optimized for EKS and provided by Amazon",
+                        "executable_users": null,
+                        "filter": [
+                            {
+                                "name": "name",
+                                "values": [
+                                    "Windows_Server-2019-English-Core-EKS_Optimized-1.17-*"
+                                ]
+                            },
+                            {
+                                "name": "platform",
+                                "values": [
+                                    "windows"
+                                ]
+                            }
+                        ],
+                        "hypervisor": "xen",
+                        "id": "ami-063e2e57ed84117a1",
+                        "image_id": "ami-063e2e57ed84117a1",
+                        "image_location": "amazon/Windows_Server-2019-English-Core-EKS_Optimized-1.17-2020.10.29",
+                        "image_owner_alias": "amazon",
+                        "image_type": "machine",
+                        "kernel_id": null,
+                        "most_recent": true,
+                        "name": "Windows_Server-2019-English-Core-EKS_Optimized-1.17-2020.10.29",
+                        "name_regex": null,
+                        "owner_id": "801119661308",
+                        "owners": [
+                            "amazon"
+                        ],
+                        "platform": "windows",
+                        "product_codes": [],
+                        "public": true,
+                        "ramdisk_id": null,
+                        "root_device_name": "/dev/sda1",
+                        "root_device_type": "ebs",
+                        "root_snapshot_id": "snap-0536514b14a7b841b",
+                        "sriov_net_support": "simple",
+                        "state": "available",
+                        "state_reason": {
+                            "code": "UNSET",
+                            "message": "UNSET"
+                        },
+                        "tags": {},
+                        "virtualization_type": "hvm"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_caller_identity",
+            "name": "current",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "account_id": "552883280992",
+                        "arn": "arn:aws:iam::552883280992:user/terraform",
+                        "id": "552883280992",
+                        "user_id": "AIDAYBOTJLRQJPJI4HYHJ"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_iam_instance_profile",
+            "name": "custom_worker_group_launch_template_iam_instance_profile",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_iam_policy_document",
+            "name": "cluster_assume_role_policy",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "2764486067",
+                        "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"EKSClusterAssumeRole\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"eks.amazonaws.com\"\n      }\n    }\n  ]\n}",
+                        "override_json": null,
+                        "policy_id": null,
+                        "source_json": null,
+                        "statement": [
+                            {
+                                "actions": [
+                                    "sts:AssumeRole"
+                                ],
+                                "condition": [],
+                                "effect": "Allow",
+                                "not_actions": [],
+                                "not_principals": [],
+                                "not_resources": [],
+                                "principals": [
+                                    {
+                                        "identifiers": [
+                                            "eks.amazonaws.com"
+                                        ],
+                                        "type": "Service"
+                                    }
+                                ],
+                                "resources": [],
+                                "sid": "EKSClusterAssumeRole"
+                            }
+                        ],
+                        "version": "2012-10-17"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_iam_policy_document",
+            "name": "cluster_elb_sl_role_creation",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "3407219844",
+                        "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"ec2:DescribeInternetGateways\",\n        \"ec2:DescribeAccountAttributes\"\n      ],\n      \"Resource\": \"*\"\n    }\n  ]\n}",
+                        "override_json": null,
+                        "policy_id": null,
+                        "source_json": null,
+                        "statement": [
+                            {
+                                "actions": [
+                                    "ec2:DescribeAccountAttributes",
+                                    "ec2:DescribeInternetGateways"
+                                ],
+                                "condition": [],
+                                "effect": "Allow",
+                                "not_actions": [],
+                                "not_principals": [],
+                                "not_resources": [],
+                                "principals": [],
+                                "resources": [
+                                    "*"
+                                ],
+                                "sid": ""
+                            }
+                        ],
+                        "version": "2012-10-17"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_iam_policy_document",
+            "name": "workers_assume_role_policy",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "3778018924",
+                        "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"EKSWorkerAssumeRole\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"ec2.amazonaws.com\"\n      }\n    }\n  ]\n}",
+                        "override_json": null,
+                        "policy_id": null,
+                        "source_json": null,
+                        "statement": [
+                            {
+                                "actions": [
+                                    "sts:AssumeRole"
+                                ],
+                                "condition": [],
+                                "effect": "Allow",
+                                "not_actions": [],
+                                "not_principals": [],
+                                "not_resources": [],
+                                "principals": [
+                                    {
+                                        "identifiers": [
+                                            "ec2.amazonaws.com"
+                                        ],
+                                        "type": "Service"
+                                    }
+                                ],
+                                "resources": [],
+                                "sid": "EKSWorkerAssumeRole"
+                            }
+                        ],
+                        "version": "2012-10-17"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_iam_role",
+            "name": "custom_cluster_iam_role",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "data",
+            "type": "aws_partition",
+            "name": "current",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "dns_suffix": "amazonaws.com",
+                        "id": "aws",
+                        "partition": "aws"
+                    }
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_cloudwatch_log_group",
+            "name": "this",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_eks_cluster",
+            "name": "this",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_iam_instance_profile",
+            "name": "workers_launch_template",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_iam_policy",
+            "name": "cluster_elb_sl_role_creation",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:iam::552883280992:policy/octopusx-grid-5-elb-sl-role-creation20201111113220197000000001",
+                        "description": "Permissions for EKS to create AWSServiceRoleForElasticLoadBalancing service-linked role",
+                        "id": "arn:aws:iam::552883280992:policy/octopusx-grid-5-elb-sl-role-creation20201111113220197000000001",
+                        "name": "octopusx-grid-5-elb-sl-role-creation20201111113220197000000001",
+                        "name_prefix": "octopusx-grid-5-elb-sl-role-creation",
+                        "path": "/",
+                        "policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"ec2:DescribeInternetGateways\",\n        \"ec2:DescribeAccountAttributes\"\n      ],\n      \"Resource\": \"*\"\n    }\n  ]\n}"
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.eks.data.aws_iam_policy_document.cluster_elb_sl_role_creation"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_iam_role",
+            "name": "cluster",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:iam::552883280992:role/octopusx-grid-520201111113220197100000002",
+                        "assume_role_policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"EKSClusterAssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"eks.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                        "create_date": "2020-11-11T11:32:21Z",
+                        "description": "",
+                        "force_detach_policies": true,
+                        "id": "octopusx-grid-520201111113220197100000002",
+                        "max_session_duration": 3600,
+                        "name": "octopusx-grid-520201111113220197100000002",
+                        "name_prefix": "octopusx-grid-5",
+                        "path": "/",
+                        "permissions_boundary": null,
+                        "tags": {
+                            "Environment": "sandbox"
+                        },
+                        "unique_id": "AROAYBOTJLRQKDQ4AOSHJ"
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.eks.data.aws_iam_policy_document.cluster_assume_role_policy"
+                    ],
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_iam_role",
+            "name": "workers",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "aws_iam_role_policy_attachment",
+            "name": "cluster_AmazonEKSClusterPolicy",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "octopusx-grid-520201111113220197100000002-20201111113223190200000003",
+                        "policy_arn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+                        "role": "octopusx-grid-520201111113220197100000002"
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.eks.aws_iam_role.cluster",
+                        "module.eks.data.aws_iam_policy_document.cluster_assume_role_policy",
+                        "module.eks.data.aws_partition.current"
+                    ],
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "kubernetes_config_map",
+            "name": "aws_auth",
+            "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "local_file",
+            "name": "kubeconfig",
+            "provider": "provider[\"registry.terraform.io/hashicorp/local\"]",
+            "instances": []
+        },
+        {
+            "module": "module.eks",
+            "mode": "managed",
+            "type": "null_resource",
+            "name": "wait_for_cluster",
+            "provider": "provider[\"registry.terraform.io/hashicorp/null\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_eip",
+            "name": "nat",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "allocation_id": null,
+                        "associate_with_private_ip": null,
+                        "association_id": "",
+                        "customer_owned_ip": "",
+                        "customer_owned_ipv4_pool": "",
+                        "domain": "vpc",
+                        "id": "eipalloc-09ab2e422d35e4f1a",
+                        "instance": "",
+                        "network_border_group": "eu-west-1",
+                        "network_interface": "",
+                        "private_dns": null,
+                        "private_ip": "",
+                        "public_dns": "ec2-54-220-23-67.eu-west-1.compute.amazonaws.com",
+                        "public_ip": "54.220.23.67",
+                        "public_ipv4_pool": "amazon",
+                        "tags": {
+                            "Name": "octopusx-grid-5-vpc-eu-west-1a",
+                            "kubernetes.io/cluster/octopusx-grid-5": "shared"
+                        },
+                        "timeouts": null,
+                        "vpc": true
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxODAwMDAwMDAwMDAsInJlYWQiOjkwMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMDB9fQ==",
+                    "dependencies": [
+                        "data.aws_availability_zones.available"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_internet_gateway",
+            "name": "this",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_nat_gateway",
+            "name": "this",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_route",
+            "name": "private_nat_gateway",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_route",
+            "name": "public_internet_gateway",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_route_table",
+            "name": "private",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_route_table",
+            "name": "public",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_route_table_association",
+            "name": "private",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_route_table_association",
+            "name": "public",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_subnet",
+            "name": "private",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_subnet",
+            "name": "public",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_vpc_ipv4_cidr_block_association",
+            "name": "this",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": []
+        },
+        {
+            "mode": "managed",
+            "type": "aws_db_instance",
+            "name": "mydb",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "address": "mydb.cp8yktnnyp49.eu-west-3.rds.amazonaws.com",
+                        "allocated_storage": 10,
+                        "allow_major_version_upgrade": null,
+                        "apply_immediately": null,
+                        "arn": "arn:aws:rds:eu-west-3:903584233714:db:mydb",
+                        "auto_minor_version_upgrade": true,
+                        "availability_zone": "eu-west-3b",
+                        "backup_retention_period": 0,
+                        "backup_window": "11:15-11:45",
+                        "ca_cert_identifier": "rds-ca-2019",
+                        "character_set_name": null,
+                        "copy_tags_to_snapshot": false,
+                        "db_subnet_group_name": "terraform-20210518092620686100000002",
+                        "delete_automated_backups": true,
+                        "deletion_protection": false,
+                        "domain": "",
+                        "domain_iam_role_name": "",
+                        "enabled_cloudwatch_logs_exports": null,
+                        "endpoint": "mydb.cp8yktnnyp49.eu-west-3.rds.amazonaws.com:5432",
+                        "engine": "postgres",
+                        "engine_version": "12.5",
+                        "final_snapshot_identifier": null,
+                        "hosted_zone_id": "ZMESEXB7ZGGQ3",
+                        "iam_database_authentication_enabled": false,
+                        "id": "mydb",
+                        "identifier": "mydb",
+                        "identifier_prefix": null,
+                        "instance_class": "db.t2.micro",
+                        "iops": 0,
+                        "kms_key_id": "",
+                        "latest_restorable_time": "0001-01-01T00:00:00Z",
+                        "license_model": "postgresql-license",
+                        "maintenance_window": "sat:05:54-sat:06:24",
+                        "max_allocated_storage": 0,
+                        "monitoring_interval": 0,
+                        "monitoring_role_arn": "",
+                        "multi_az": false,
+                        "name": "testdb",
+                        "option_group_name": "default:postgres-12",
+                        "parameter_group_name": "default.postgres12",
+                        "password": "!Jupiter",
+                        "performance_insights_enabled": false,
+                        "performance_insights_kms_key_id": "",
+                        "performance_insights_retention_period": 0,
+                        "port": 5432,
+                        "publicly_accessible": true,
+                        "replicas": [],
+                        "replicate_source_db": "",
+                        "resource_id": "db-UEPUG2WK2I74DC3R2SAW6UYTZE",
+                        "restore_to_point_in_time": [],
+                        "s3_import": [],
+                        "security_group_names": null,
+                        "skip_final_snapshot": true,
+                        "snapshot_identifier": null,
+                        "status": "available",
+                        "storage_encrypted": false,
+                        "storage_type": "gp2",
+                        "tags": null,
+                        "tags_all": {},
+                        "timeouts": null,
+                        "timezone": "",
+                        "username": "root",
+                        "vpc_security_group_ids": [
+                            "sg-0a2cb79bcd2ae7c9b"
+                        ]
+                    },
+                    "sensitive_attributes": [],
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInVwZGF0ZSI6NDgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+                    "dependencies": [
+                        "aws_db_subnet_group.subn-groups",
+                        "aws_security_group.elb-sg",
+                        "aws_security_group.rds-sg",
+                        "aws_security_group.web-sg",
+                        "aws_subnet.privada1",
+                        "aws_subnet.privada2",
+                        "aws_vpc.vpc",
+                        "data.aws_availability_zones.az"
+                    ]
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_db_subnet_group",
+            "name": "subn-groups",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:rds:eu-west-3:903584233714:subgrp:terraform-20210518092620686100000002",
+                        "description": "Managed by Terraform",
+                        "id": "terraform-20210518092620686100000002",
+                        "name": "terraform-20210518092620686100000002",
+                        "name_prefix": null,
+                        "subnet_ids": [
+                            "subnet-00bcbeab2f811013a",
+                            "subnet-0ba958119e408b2bb"
+                        ],
+                        "tags": null,
+                        "tags_all": {}
+                    },
+                    "sensitive_attributes": [],
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "aws_subnet.privada1",
+                        "aws_subnet.privada2",
+                        "aws_vpc.vpc",
+                        "data.aws_availability_zones.az"
+                    ]
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_elb",
+            "name": "elb-web",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "access_logs": [],
+                        "arn": "arn:aws:elasticloadbalancing:eu-west-3:903584233714:loadbalancer/edt-web",
+                        "availability_zones": [
+                            "eu-west-3a"
+                        ],
+                        "connection_draining": false,
+                        "connection_draining_timeout": 300,
+                        "cross_zone_load_balancing": true,
+                        "dns_name": "edt-web-200367301.eu-west-3.elb.amazonaws.com",
+                        "health_check": [
+                            {
+                                "healthy_threshold": 10,
+                                "interval": 30,
+                                "target": "TCP:80",
+                                "timeout": 5,
+                                "unhealthy_threshold": 2
+                            }
+                        ],
+                        "id": "edt-web",
+                        "idle_timeout": 60,
+                        "instances": [],
+                        "internal": false,
+                        "listener": [
+                            {
+                                "instance_port": 80,
+                                "instance_protocol": "http",
+                                "lb_port": 80,
+                                "lb_protocol": "http",
+                                "ssl_certificate_id": ""
+                            }
+                        ],
+                        "name": "edt-web",
+                        "name_prefix": null,
+                        "security_groups": [
+                            "sg-0c340a393269429f1"
+                        ],
+                        "source_security_group": "903584233714/elb-sg",
+                        "source_security_group_id": "sg-0c340a393269429f1",
+                        "subnets": [
+                            "subnet-00f516e527a87e633"
+                        ],
+                        "tags": null,
+                        "tags_all": {},
+                        "zone_id": "Z3Q77PNBQS71R4"
+                    },
+                    "sensitive_attributes": [],
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "aws_security_group.elb-sg",
+                        "aws_subnet.publica",
+                        "aws_vpc.vpc",
+                        "data.aws_availability_zones.az"
+                    ],
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_security_group",
+            "name": "elb-sg",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ec2:eu-west-3:903584233714:security-group/sg-0c340a393269429f1",
+                        "description": "Managed by Terraform",
+                        "egress": [
+                            {
+                                "cidr_blocks": [
+                                    "0.0.0.0/0"
+                                ],
+                                "description": "",
+                                "from_port": 0,
+                                "ipv6_cidr_blocks": [],
+                                "prefix_list_ids": [],
+                                "protocol": "-1",
+                                "security_groups": [],
+                                "self": false,
+                                "to_port": 0
+                            }
+                        ],
+                        "id": "sg-0c340a393269429f1",
+                        "ingress": [
+                            {
+                                "cidr_blocks": [
+                                    "0.0.0.0/0"
+                                ],
+                                "description": "",
+                                "from_port": 80,
+                                "ipv6_cidr_blocks": [],
+                                "prefix_list_ids": [],
+                                "protocol": "tcp",
+                                "security_groups": [],
+                                "self": false,
+                                "to_port": 80
+                            }
+                        ],
+                        "name": "elb-sg",
+                        "name_prefix": "",
+                        "owner_id": "903584233714",
+                        "revoke_rules_on_delete": false,
+                        "tags": null,
+                        "tags_all": {},
+                        "timeouts": null,
+                        "vpc_id": "vpc-074d6959b622d416e"
+                    },
+                    "sensitive_attributes": [],
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+                    "dependencies": [
+                        "aws_vpc.vpc"
+                    ],
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_subnet",
+            "name": "privada1",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ec2:eu-west-3:903584233714:subnet/subnet-00bcbeab2f811013a",
+                        "assign_ipv6_address_on_creation": false,
+                        "availability_zone": "eu-west-3a",
+                        "availability_zone_id": "euw3-az1",
+                        "cidr_block": "10.0.10.0/24",
+                        "customer_owned_ipv4_pool": "",
+                        "id": "subnet-00bcbeab2f811013a",
+                        "ipv6_cidr_block": "",
+                        "ipv6_cidr_block_association_id": "",
+                        "map_customer_owned_ip_on_launch": false,
+                        "map_public_ip_on_launch": true,
+                        "outpost_arn": "",
+                        "owner_id": "903584233714",
+                        "tags": {
+                            "Name": "privada1"
+                        },
+                        "tags_all": {
+                            "Name": "privada1"
+                        },
+                        "timeouts": null,
+                        "vpc_id": "vpc-074d6959b622d416e"
+                    },
+                    "sensitive_attributes": [],
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+                    "dependencies": [
+                        "aws_vpc.vpc",
+                        "data.aws_availability_zones.az"
+                    ]
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_vpc",
+            "name": "vpc",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ec2:eu-west-3:903584233714:vpc/vpc-074d6959b622d416e",
+                        "assign_generated_ipv6_cidr_block": false,
+                        "cidr_block": "10.0.0.0/16",
+                        "default_network_acl_id": "acl-09fdfcfb86df06a7c",
+                        "default_route_table_id": "rtb-05f39afd04c0d107a",
+                        "default_security_group_id": "sg-0b10bb3604aab1724",
+                        "dhcp_options_id": "dopt-c619d5ae",
+                        "enable_classiclink": null,
+                        "enable_classiclink_dns_support": null,
+                        "enable_dns_hostnames": true,
+                        "enable_dns_support": true,
+                        "id": "vpc-074d6959b622d416e",
+                        "instance_tenancy": "default",
+                        "ipv6_association_id": "",
+                        "ipv6_cidr_block": "",
+                        "main_route_table_id": "rtb-05f39afd04c0d107a",
+                        "owner_id": "903584233714",
+                        "tags": {
+                            "Name": "edt"
+                        },
+                        "tags_all": {
+                            "Name": "edt"
+                        }
+                    },
+                    "sensitive_attributes": [],
+                    "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "",
+            "name": "database",
+            "provider": "provider.aws",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "apply_immediately": null,
+                        "arn": "arn:aws:rds:us-east-1:616100519737:cluster:sandbox-database-cluster",
+                        "availability_zones": [
+                            "us-east-1a",
+                            "us-east-1c",
+                            "us-east-1e"
+                        ],
+                        "backtrack_window": 0,
+                        "backup_retention_period": 7,
+                        "cluster_identifier": "sandbox-database-cluster",
+                        "cluster_identifier_prefix": null,
+                        "cluster_members": [
+                            "sandbox-database"
+                        ],
+                        "cluster_resource_id": "cluster-PSSB3S753RXCVO23RRODDRIBME",
+                        "copy_tags_to_snapshot": false,
+                        "database_name": "avior",
+                        "db_cluster_parameter_group_name": "default.aurora5.6",
+                        "db_subnet_group_name": "default",
+                        "deletion_protection": false,
+                        "enable_http_endpoint": false,
+                        "enabled_cloudwatch_logs_exports": [],
+                        "endpoint": "sandbox-database-cluster.cluster-c9tifqxuh1z2.us-east-1.rds.amazonaws.com",
+                        "engine": "aurora",
+                        "engine_mode": "provisioned",
+                        "engine_version": "5.6.10a",
+                        "final_snapshot_identifier": null,
+                        "global_cluster_identifier": "",
+                        "hosted_zone_id": "Z2R2ITUGPM61AM",
+                        "iam_database_authentication_enabled": false,
+                        "iam_roles": [],
+                        "id": "sandbox-database-cluster",
+                        "kms_key_id": "",
+                        "master_password": null,
+                        "master_username": "root",
+                        "port": 3306,
+                        "preferred_backup_window": "04:00-06:00",
+                        "preferred_maintenance_window": "sat:00:00-sat:02:00",
+                        "reader_endpoint": "sandbox-database-cluster.cluster-ro-c9tifqxuh1z2.us-east-1.rds.amazonaws.com",
+                        "replication_source_identifier": "",
+                        "s3_import": [],
+                        "scaling_configuration": [],
+                        "skip_final_snapshot": true,
+                        "snapshot_identifier": null,
+                        "source_region": null,
+                        "storage_encrypted": false,
+                        "tags": {},
+                        "timeouts": {
+                            "create": null,
+                            "delete": null,
+                            "update": null
+                        },
+                        "vpc_security_group_ids": [
+                            "sg-aa0cffeb"
+                        ]
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo3MjAwMDAwMDAwMDAwLCJkZWxldGUiOjcyMDAwMDAwMDAwMDAsInVwZGF0ZSI6NzIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMCJ9"
+                }
+            ]
+        },
+        {
+            "mode": "data",
+            "type": "aws_alb",
+            "name": "backend_alb",
+            "provider": "provider.aws",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "access_logs": [
+                            {
+                                "bucket": "",
+                                "enabled": false,
+                                "prefix": ""
+                            }
+                        ],
+                        "arn": "arn:aws:elasticloadbalancing:us-east-1:616100519737:loadbalancer/app/backend-alb/8720db1a5fcaa6e5",
+                        "arn_suffix": "app/backend-alb/8720db1a5fcaa6e5",
+                        "dns_name": "backend-alb-178188086.us-east-1.elb.amazonaws.com",
+                        "drop_invalid_header_fields": false,
+                        "enable_deletion_protection": false,
+                        "id": "arn:aws:elasticloadbalancing:us-east-1:616100519737:loadbalancer/app/backend-alb/8720db1a5fcaa6e5",
+                        "idle_timeout": 60,
+                        "internal": false,
+                        "ip_address_type": "ipv4",
+                        "load_balancer_type": "application",
+                        "name": "backend-alb",
+                        "security_groups": [
+                            "sg-0867787121ae6dccc"
+                        ],
+                        "subnet_mapping": [
+                            {
+                                "allocation_id": "",
+                                "subnet_id": "subnet-02a0a302bb4fc7cff"
+                            },
+                            {
+                                "allocation_id": "",
+                                "subnet_id": "subnet-0e91376ea4771a175"
+                            }
+                        ],
+                        "subnets": [
+                            "subnet-02a0a302bb4fc7cff",
+                            "subnet-0e91376ea4771a175"
+                        ],
+                        "tags": {
+                            "Name": "Backend ALB"
+                        },
+                        "vpc_id": "vpc-0c12de6ae6d738134",
+                        "zone_id": "Z35SXDOTRQ7X7K"
+                    }
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_rds_cluster",
+            "name": "database",
+            "provider": "provider.aws",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "apply_immediately": null,
+                        "arn": "arn:aws:rds:us-east-1:616100519737:cluster:sandbox-database-cluster",
+                        "availability_zones": [
+                            "us-east-1a",
+                            "us-east-1c",
+                            "us-east-1e"
+                        ],
+                        "backtrack_window": 0,
+                        "backup_retention_period": 7,
+                        "cluster_identifier": "sandbox-database-cluster",
+                        "cluster_identifier_prefix": null,
+                        "cluster_members": [
+                            "sandbox-database"
+                        ],
+                        "cluster_resource_id": "cluster-PSSB3S753RXCVO23RRODDRIBME",
+                        "copy_tags_to_snapshot": false,
+                        "database_name": "avior",
+                        "db_cluster_parameter_group_name": "default.aurora5.6",
+                        "db_subnet_group_name": "default",
+                        "deletion_protection": false,
+                        "enable_http_endpoint": false,
+                        "enabled_cloudwatch_logs_exports": [],
+                        "endpoint": "sandbox-database-cluster.cluster-c9tifqxuh1z2.us-east-1.rds.amazonaws.com",
+                        "engine": "aurora",
+                        "engine_mode": "provisioned",
+                        "engine_version": "5.6.10a",
+                        "final_snapshot_identifier": null,
+                        "global_cluster_identifier": "",
+                        "hosted_zone_id": "Z2R2ITUGPM61AM",
+                        "iam_database_authentication_enabled": false,
+                        "iam_roles": [],
+                        "id": "sandbox-database-cluster",
+                        "kms_key_id": "",
+                        "master_password": null,
+                        "master_username": "root",
+                        "port": 3306,
+                        "preferred_backup_window": "04:00-06:00",
+                        "preferred_maintenance_window": "sat:00:00-sat:02:00",
+                        "reader_endpoint": "sandbox-database-cluster.cluster-ro-c9tifqxuh1z2.us-east-1.rds.amazonaws.com",
+                        "replication_source_identifier": "",
+                        "s3_import": [],
+                        "scaling_configuration": [],
+                        "skip_final_snapshot": true,
+                        "snapshot_identifier": null,
+                        "source_region": null,
+                        "storage_encrypted": false,
+                        "tags": {},
+                        "timeouts": {
+                            "create": null,
+                            "delete": null,
+                            "update": null
+                        },
+                        "vpc_security_group_ids": [
+                            "sg-aa0cffeb"
+                        ]
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo3MjAwMDAwMDAwMDAwLCJkZWxldGUiOjcyMDAwMDAwMDAwMDAsInVwZGF0ZSI6NzIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMCJ9"
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_rds_cluster_parameter_group",
+            "name": "cluster_parameter_example",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:rds:ap-northeast-1:784696862265:cluster-pg:example",
+                        "description": "Managed by Terraform",
+                        "family": "aurora-postgresql10",
+                        "id": "example",
+                        "name": "example",
+                        "name_prefix": null,
+                        "parameter": [
+                            {
+                                "apply_method": "pending-reboot",
+                                "name": "shared_preload_libraries",
+                                "value": "pg_stat_statements ,pg_hint_plan ,pgaudit"
+                            }
+                        ],
+                        "tags": {},
+                        "tags_all": {}
+                    },
+                    "sensitive_attributes": [],
+                    "private": "bnVsbA=="
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_iam_user_policy_attachment",
+            "name": "test-attach2",
+            "provider": "provider.aws",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "loadbalancer-2020111317225517310000000a",
+                        "policy_arn": "arn:aws:iam::526954929923:policy/test2",
+                        "user": "loadbalancer"
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "aws_iam_policy.test_ro2",
+                        "aws_iam_user.test"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.ecs_module",
+            "mode": "managed",
+            "type": "aws_iam_instance_profile",
+            "name": "test_profile",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:iam::862989290375:instance-profile/Aleidy-us-east-1-dev-instancePro",
+                        "create_date": "2021-01-06T21:33:20Z",
+                        "id": "Aleidy-us-east-1-dev-instancePro",
+                        "name": "Aleidy-us-east-1-dev-instancePro",
+                        "name_prefix": null,
+                        "path": "/",
+                        "role": "Aleidy-us-east-1-dev-ec2_role",
+                        "unique_id": "AIPA4R3RLRODSEQ6WQACN"
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.ecs_module.aws_iam_role.ec2-role"
+                    ],
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "module": "module.ecs_module",
+            "mode": "managed",
+            "type": "aws_iam_policy_attachment",
+            "name": "ec2_rp_attach",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "groups": [],
+                        "id": "Aleidy-us-east-1-dev-iamPolicy",
+                        "name": "Aleidy-us-east-1-dev-iamPolicy",
+                        "policy_arn": "arn:aws:iam::862989290375:policy/Aleidy-us-east-1-dev-ec2Policy",
+                        "roles": [
+                            "Aleidy-us-east-1-dev-ec2_role"
+                        ],
+                        "users": []
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.ecs_module.aws_iam_policy.ec2_policy",
+                        "module.ecs_module.aws_iam_role.ec2-role"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.myiam",
+            "mode": "managed",
+            "type": "aws_iam_user",
+            "name": "this",
+            "each": "list",
+            "provider": "provider.aws",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:iam::932716035065:user/admin-accessall",
+                        "force_destroy": false,
+                        "id": "admin-accessall",
+                        "name": "admin-accessall",
+                        "path": "/",
+                        "permissions_boundary": null,
+                        "tags": {
+                            "Stage": "Test"
+                        },
+                        "unique_id": "AIDA5SKRVHP4UT6QCU64A"
+                    },
+                    "private": "bnVsbA=="
+                },
+                {
+                    "index_key": 1,
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:iam::932716035065:user/user-readonly",
+                        "force_destroy": false,
+                        "id": "user-readonly",
+                        "name": "user-readonly",
+                        "path": "/",
+                        "permissions_boundary": null,
+                        "tags": {
+                            "Stage": "Test"
+                        },
+                        "unique_id": "AIDA5SKRVHP4QFYBBBN4C"
+                    },
+                    "private": "bnVsbA=="
+                },
+                {
+                    "index_key": 2,
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:iam::932716035065:user/admin-s3",
+                        "force_destroy": false,
+                        "id": "admin-s3",
+                        "name": "admin-s3",
+                        "path": "/",
+                        "permissions_boundary": null,
+                        "tags": {
+                            "Stage": "Test"
+                        },
+                        "unique_id": "AIDA5SKRVHP46SUXYZD64"
+                    },
+                    "private": "bnVsbA=="
+                }
+            ]
+        },
+        {
+            "module": "module.rds",
+            "mode": "managed",
+            "type": "aws_rds_cluster_instance",
+            "name": "cluster_instances",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "index_key": 0,
+                    "schema_version": 0,
+                    "attributes": {
+                        "apply_immediately": null,
+                        "arn": "arn:aws:rds:us-east-1:862989290375:db:aleidy-dev-aleidys-cluster-0",
+                        "auto_minor_version_upgrade": true,
+                        "availability_zone": "us-east-1a",
+                        "ca_cert_identifier": "rds-ca-2019",
+                        "cluster_identifier": "aleidy-us-east-1-dev-rdscluster",
+                        "copy_tags_to_snapshot": false,
+                        "db_parameter_group_name": "aleidy-dev-aleidys-cluster-pg",
+                        "db_subnet_group_name": "aleidy-us-east-1-dev-db_subnet_g",
+                        "dbi_resource_id": "db-PQKSOEEX5RZSDT5DMKHN6742PU",
+                        "endpoint": "aleidy-dev-aleidys-cluster-0.c7covtqudnud.us-east-1.rds.amazonaws.com",
+                        "engine": "aurora-mysql",
+                        "engine_version": "5.7.mysql_aurora.2.07.2",
+                        "id": "aleidy-dev-aleidys-cluster-0",
+                        "identifier": "aleidy-dev-aleidys-cluster-0",
+                        "identifier_prefix": null,
+                        "instance_class": "db.t3.small",
+                        "kms_key_id": "",
+                        "monitoring_interval": 0,
+                        "monitoring_role_arn": "",
+                        "performance_insights_enabled": false,
+                        "performance_insights_kms_key_id": "",
+                        "port": 3306,
+                        "preferred_backup_window": "08:29-08:59",
+                        "preferred_maintenance_window": "sun:06:51-sun:07:21",
+                        "promotion_tier": 0,
+                        "publicly_accessible": false,
+                        "storage_encrypted": false,
+                        "tags": null,
+                        "timeouts": null,
+                        "writer": true
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInVwZGF0ZSI6NTQwMDAwMDAwMDAwMH19",
+                    "dependencies": [
+                        "module.db-security_group.aws_security_group.security_group",
+                        "module.rds.aws_db_parameter_group.group",
+                        "module.rds.aws_db_subnet_group.default",
+                        "module.rds.aws_rds_cluster.default",
+                        "module.rds.aws_rds_cluster_parameter_group.group"
+                    ]
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_ecs_cluster",
+            "name": "ecs",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:ecs:eu-central-1:836906079004:cluster/stan-aws-terraform-cluster",
+                        "capacity_providers": [],
+                        "configuration": [],
+                        "default_capacity_provider_strategy": [],
+                        "id": "arn:aws:ecs:eu-central-1:836906079004:cluster/stan-aws-terraform-cluster",
+                        "name": "stan-aws-terraform-cluster",
+                        "setting": [
+                            {
+                                "name": "containerInsights",
+                                "value": "disabled"
+                            }
+                        ],
+                        "tags": {},
+                        "tags_all": {}
+                    },
+                    "sensitive_attributes": [],
+                    "private": "bnVsbA=="
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_ecs_service",
+            "name": "service",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "capacity_provider_strategy": [],
+                        "cluster": "arn:aws:ecs:eu-central-1:836906079004:cluster/stan-aws-terraform-cluster",
+                        "deployment_circuit_breaker": [
+                            {
+                                "enable": false,
+                                "rollback": false
+                            }
+                        ],
+                        "deployment_controller": [
+                            {
+                                "type": "ECS"
+                            }
+                        ],
+                        "deployment_maximum_percent": 200,
+                        "deployment_minimum_healthy_percent": 100,
+                        "desired_count": 1,
+                        "enable_ecs_managed_tags": true,
+                        "enable_execute_command": false,
+                        "force_new_deployment": null,
+                        "health_check_grace_period_seconds": 0,
+                        "iam_role": null,
+                        "id": "arn:aws:ecs:eu-central-1:836906079004:service/stan-aws-terraform-cluster/stan-aws-terraform-service",
+                        "launch_type": "EC2",
+                        "load_balancer": [],
+                        "name": "stan-aws-terraform-service",
+                        "network_configuration": [],
+                        "ordered_placement_strategy": [],
+                        "placement_constraints": [],
+                        "platform_version": "",
+                        "propagate_tags": "NONE",
+                        "scheduling_strategy": "REPLICA",
+                        "service_registries": [],
+                        "tags": {},
+                        "tags_all": {},
+                        "task_definition": "arn:aws:ecs:eu-central-1:836906079004:task-definition/stan-aws-terraform-definition:8",
+                        "timeouts": null,
+                        "wait_for_steady_state": false
+                    },
+                    "sensitive_attributes": [],
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0=",
+                    "dependencies": [
+                        "aws_ecs_cluster.ecs",
+                        "aws_ecs_task_definition.service",
+                        "aws_iam_role.ecsTaskExecutionRole"
+                    ]
+                }
+            ]
+        },
+        {
+            "mode": "managed",
+            "type": "aws_ecs_task_definition",
+            "name": "service",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ecs:eu-central-1:836906079004:task-definition/stan-aws-terraform-definition:8",
+                        "container_definitions": "[{\"cpu\":1,\"environment\":[],\"essential\":true,\"image\":\"836906079004.dkr.ecr.eu-central-1.amazonaws.com/stan-image-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"stan-tms-container\",\"portMappings\":[{\"containerPort\":3000,\"hostPort\":8080,\"protocol\":\"tcp\"}],\"volumesFrom\":[]}]",
+                        "cpu": "1024",
+                        "ephemeral_storage": [],
+                        "execution_role_arn": "arn:aws:iam::836906079004:role/stan-aws-terraform-execution-task-role",
+                        "family": "stan-aws-terraform-definition",
+                        "id": "stan-aws-terraform-definition",
+                        "inference_accelerator": [],
+                        "ipc_mode": "",
+                        "memory": "512",
+                        "network_mode": "",
+                        "pid_mode": "",
+                        "placement_constraints": [],
+                        "proxy_configuration": [],
+                        "requires_compatibilities": null,
+                        "revision": 8,
+                        "runtime_platform": [],
+                        "skip_destroy": false,
+                        "tags": null,
+                        "tags_all": {},
+                        "task_role_arn": "arn:aws:iam::836906079004:role/stan-aws-terraform-execution-task-role",
+                        "volume": []
+                    },
+                    "sensitive_attributes": [],
+                    "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+                    "dependencies": [
+                        "aws_iam_role.ecsTaskExecutionRole"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_vpc",
+            "name": "ale_vpc",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ec2:us-east-1:862989290375:vpc/vpc-062aad044e883696e",
+                        "assign_generated_ipv6_cidr_block": false,
+                        "cidr_block": "10.200.0.0/16",
+                        "default_network_acl_id": "acl-08282e1c04805bd13",
+                        "default_route_table_id": "rtb-08a8be1f89cb27e37",
+                        "default_security_group_id": "sg-01ec034c7a7cd9113",
+                        "dhcp_options_id": "dopt-7f2a4e05",
+                        "enable_classiclink": false,
+                        "enable_classiclink_dns_support": false,
+                        "enable_dns_hostnames": false,
+                        "enable_dns_support": true,
+                        "id": "vpc-062aad044e883696e",
+                        "instance_tenancy": "default",
+                        "ipv6_association_id": "",
+                        "ipv6_cidr_block": "",
+                        "main_route_table_id": "rtb-08a8be1f89cb27e37",
+                        "owner_id": "862989290375",
+                        "tags": {
+                            "Deployment_Method": "terraform",
+                            "name": "Aleidy-us-east-1-dev-vpc"
+                        }
+                    },
+                    "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "module": "module.vpc",
+            "mode": "managed",
+            "type": "aws_subnet",
+            "name": "public-3",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ec2:us-east-1:862989290375:subnet/subnet-0520edbe8c42d9444",
+                        "assign_ipv6_address_on_creation": false,
+                        "availability_zone": "us-east-1c",
+                        "availability_zone_id": "use1-az1",
+                        "cidr_block": "10.200.2.0/24",
+                        "id": "subnet-0520edbe8c42d9444",
+                        "ipv6_cidr_block": "",
+                        "ipv6_cidr_block_association_id": "",
+                        "map_public_ip_on_launch": false,
+                        "outpost_arn": "",
+                        "owner_id": "862989290375",
+                        "tags": {
+                            "Deployment_Method": "terraform",
+                            "name": "Aleidy-us-east-1-dev-public-subnet3"
+                        },
+                        "timeouts": null,
+                        "vpc_id": "vpc-062aad044e883696e"
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+                    "dependencies": [
+                        "module.vpc.aws_vpc.ale_vpc"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.ec2-security_group",
+            "mode": "managed",
+            "type": "aws_security_group",
+            "name": "security_group",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 1,
+                    "attributes": {
+                        "arn": "arn:aws:ec2:us-east-1:862989290375:security-group/sg-0724ddbee4c7b521a",
+                        "description": "Managed by Terraform",
+                        "egress": [
+                            {
+                                "cidr_blocks": [
+                                    "0.0.0.0/0"
+                                ],
+                                "description": "",
+                                "from_port": 0,
+                                "ipv6_cidr_blocks": [],
+                                "prefix_list_ids": [],
+                                "protocol": "-1",
+                                "security_groups": [],
+                                "self": false,
+                                "to_port": 0
+                            }
+                        ],
+                        "id": "sg-0724ddbee4c7b521a",
+                        "ingress": [
+                            {
+                                "cidr_blocks": [],
+                                "description": "All traffic on port 22",
+                                "from_port": 0,
+                                "ipv6_cidr_blocks": [],
+                                "prefix_list_ids": [],
+                                "protocol": "-1",
+                                "security_groups": [
+                                    "sg-0539c2344e5fdcd5f"
+                                ],
+                                "self": false,
+                                "to_port": 0
+                            }
+                        ],
+                        "name": "Aleidy-us-east-1-dev-ec2security",
+                        "name_prefix": "",
+                        "owner_id": "862989290375",
+                        "revoke_rules_on_delete": false,
+                        "tags": {
+                            "Deployment_Method": "terraform",
+                            "name": "Aleidy-us-east-1-dev-security_group"
+                        },
+                        "timeouts": null,
+                        "vpc_id": "vpc-062aad044e883696e"
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+                    "dependencies": [
+                        "module.load-balancer-security-group.aws_security_group.security_group",
+                        "module.vpc.aws_vpc.ale_vpc"
+                    ],
+                    "create_before_destroy": true
+                }
+            ]
+        },
+        {
+            "module": "module.target_group",
+            "mode": "managed",
+            "type": "aws_lb_target_group",
+            "name": "My_lb_Ale",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:targetgroup/Aleidy-us-east-1-dev-targetGroup/64d94c72d12db6dc",
+                        "arn_suffix": "targetgroup/Aleidy-us-east-1-dev-targetGroup/64d94c72d12db6dc",
+                        "deregistration_delay": 300,
+                        "health_check": [
+                            {
+                                "enabled": true,
+                                "healthy_threshold": 2,
+                                "interval": 31,
+                                "matcher": "200-304",
+                                "path": "/",
+                                "port": "traffic-port",
+                                "protocol": "HTTP",
+                                "timeout": 30,
+                                "unhealthy_threshold": 3
+                            }
+                        ],
+                        "id": "arn:aws:elasticloadbalancing:us-east-1:862989290375:targetgroup/Aleidy-us-east-1-dev-targetGroup/64d94c72d12db6dc",
+                        "lambda_multi_value_headers_enabled": false,
+                        "load_balancing_algorithm_type": "round_robin",
+                        "name": "Aleidy-us-east-1-dev-targetGroup",
+                        "name_prefix": null,
+                        "port": 8080,
+                        "protocol": "HTTP",
+                        "proxy_protocol_v2": false,
+                        "slow_start": 0,
+                        "stickiness": [
+                            {
+                                "cookie_duration": 86400,
+                                "enabled": false,
+                                "type": "lb_cookie"
+                            }
+                        ],
+                        "tags": {},
+                        "target_type": "ip",
+                        "vpc_id": "vpc-062aad044e883696e"
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.load-balancer-security-group.aws_security_group.security_group",
+                        "module.load_balancer.aws_lb.ALB",
+                        "module.vpc.aws_subnet.public-1",
+                        "module.vpc.aws_subnet.public-2",
+                        "module.vpc.aws_subnet.public-3",
+                        "module.vpc.aws_vpc.ale_vpc"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.load_balancer",
+            "mode": "managed",
+            "type": "aws_lb",
+            "name": "ALB",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "access_logs": [
+                            {
+                                "bucket": "",
+                                "enabled": false,
+                                "prefix": ""
+                            }
+                        ],
+                        "arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:loadbalancer/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2",
+                        "arn_suffix": "app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2",
+                        "customer_owned_ipv4_pool": "",
+                        "dns_name": "Aleidy-us-east-1-dev-loadbalance-1351280189.us-east-1.elb.amazonaws.com",
+                        "drop_invalid_header_fields": false,
+                        "enable_cross_zone_load_balancing": null,
+                        "enable_deletion_protection": false,
+                        "enable_http2": true,
+                        "id": "arn:aws:elasticloadbalancing:us-east-1:862989290375:loadbalancer/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2",
+                        "idle_timeout": 60,
+                        "internal": false,
+                        "ip_address_type": "ipv4",
+                        "load_balancer_type": "application",
+                        "name": "Aleidy-us-east-1-dev-loadbalance",
+                        "name_prefix": null,
+                        "security_groups": [
+                            "sg-0539c2344e5fdcd5f"
+                        ],
+                        "subnet_mapping": [
+                            {
+                                "allocation_id": "",
+                                "outpost_id": "",
+                                "private_ipv4_address": "",
+                                "subnet_id": "subnet-039065fe682436f48"
+                            },
+                            {
+                                "allocation_id": "",
+                                "outpost_id": "",
+                                "private_ipv4_address": "",
+                                "subnet_id": "subnet-0520edbe8c42d9444"
+                            },
+                            {
+                                "allocation_id": "",
+                                "outpost_id": "",
+                                "private_ipv4_address": "",
+                                "subnet_id": "subnet-0ffed411294b85131"
+                            }
+                        ],
+                        "subnets": [
+                            "subnet-039065fe682436f48",
+                            "subnet-0520edbe8c42d9444",
+                            "subnet-0ffed411294b85131"
+                        ],
+                        "tags": {
+                            "Deployment_Method": "terraform",
+                            "name": "Aleidy-us-east-1-dev-loadbalancer"
+                        },
+                        "timeouts": null,
+                        "vpc_id": "vpc-062aad044e883696e",
+                        "zone_id": "Z35SXDOTRQ7X7K"
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH19",
+                    "dependencies": [
+                        "module.load-balancer-security-group.aws_security_group.security_group",
+                        "module.vpc.aws_subnet.public-1",
+                        "module.vpc.aws_subnet.public-2",
+                        "module.vpc.aws_subnet.public-3"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.load_balancer",
+            "mode": "managed",
+            "type": "aws_lb_listener",
+            "name": "port-80-traffic",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:listener/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2/b4949ac9cb838fcd",
+                        "certificate_arn": null,
+                        "default_action": [
+                            {
+                                "authenticate_cognito": [],
+                                "authenticate_oidc": [],
+                                "fixed_response": [],
+                                "forward": [],
+                                "order": 1,
+                                "redirect": [],
+                                "target_group_arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:targetgroup/Aleidy-us-east-1-dev-targetGroup/64d94c72d12db6dc",
+                                "type": "forward"
+                            }
+                        ],
+                        "id": "arn:aws:elasticloadbalancing:us-east-1:862989290375:listener/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2/b4949ac9cb838fcd",
+                        "load_balancer_arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:loadbalancer/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2",
+                        "port": 80,
+                        "protocol": "HTTP",
+                        "ssl_policy": "",
+                        "timeouts": null
+                    },
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsicmVhZCI6NjAwMDAwMDAwMDAwfX0=",
+                    "dependencies": [
+                        "module.load-balancer-security-group.aws_security_group.security_group",
+                        "module.load_balancer.aws_lb.ALB",
+                        "module.target_group.aws_lb_target_group.My_lb_Ale",
+                        "module.vpc.aws_subnet.public-1",
+                        "module.vpc.aws_subnet.public-2",
+                        "module.vpc.aws_subnet.public-3"
+                    ]
+                }
+            ]
+        },
+        {
+            "module": "module.load_balancer",
+            "mode": "managed",
+            "type": "aws_lb_listener_rule",
+            "name": "port-80-rule",
+            "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+            "instances": [
+                {
+                    "schema_version": 0,
+                    "attributes": {
+                        "action": [
+                            {
+                                "authenticate_cognito": [],
+                                "authenticate_oidc": [],
+                                "fixed_response": [],
+                                "forward": [],
+                                "order": 1,
+                                "redirect": [],
+                                "target_group_arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:targetgroup/Aleidy-us-east-1-dev-targetGroup/64d94c72d12db6dc",
+                                "type": "forward"
+                            }
+                        ],
+                        "arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:listener-rule/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2/b4949ac9cb838fcd/28af8faf6cf2ea8e",
+                        "condition": [
+                            {
+                                "host_header": [
+                                    {
+                                        "values": [
+                                            "test1.aleidy.kiastests.com"
+                                        ]
+                                    }
+                                ],
+                                "http_header": [],
+                                "http_request_method": [],
+                                "path_pattern": [],
+                                "query_string": [],
+                                "source_ip": []
+                            }
+                        ],
+                        "id": "arn:aws:elasticloadbalancing:us-east-1:862989290375:listener-rule/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2/b4949ac9cb838fcd/28af8faf6cf2ea8e",
+                        "listener_arn": "arn:aws:elasticloadbalancing:us-east-1:862989290375:listener/app/Aleidy-us-east-1-dev-loadbalance/4a799f91dcf0baa2/b4949ac9cb838fcd",
+                        "priority": 99
+                    },
+                    "private": "bnVsbA==",
+                    "dependencies": [
+                        "module.load-balancer-security-group.aws_security_group.security_group",
+                        "module.load_balancer.aws_lb.ALB",
+                        "module.load_balancer.aws_lb_listener.port-80-traffic",
+                        "module.target_group.aws_lb_target_group.My_lb_Ale",
+                        "module.vpc.aws_subnet.public-1",
+                        "module.vpc.aws_subnet.public-2",
+                        "module.vpc.aws_subnet.public-3"
+                    ]
+                }
+            ]
+        }
+    ]
+}
