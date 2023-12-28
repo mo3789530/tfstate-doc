@@ -2,7 +2,7 @@ import json
 from logging import getLogger
 from multiprocessing.spawn import prepare
 
-from src.libs.pretty import pretty_json
+from src.libs.pretty import pretty_json, pretty_array
 
 logger = getLogger("src").getChild(__name__)
 
@@ -20,6 +20,7 @@ class CommonParser:
             else:
                 data[k] = json_data[k]
         data["type"] = type_str
+        # print(data)
         return data
 
     def format(self, key: str, data: any):
@@ -27,7 +28,7 @@ class CommonParser:
         if type(data) is dict:
             v = pretty_json(json.dumps(data))
         elif type(data) is list:
-            v = pretty_json(json.dumps(data))
+            v = pretty_array(json.dumps(data))
         elif data == "null" or data == None:
             v = "None"
 

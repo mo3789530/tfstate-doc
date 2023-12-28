@@ -24,7 +24,13 @@ class CommonBridge():
         if format == format.MD or format == Format.HTML:
             pretty = True
         for d in dic:
-            data = CommonParser().parser(json_data=d.get("attributes", {}), type_str=d.get("type", ""), pretty=pretty)
+            instances = d.get("instances", [{}])
+            attributes = instances[0].get("attributes", {}) if len(instances) > 0 else {}
+            type_str = d.get("type", "unknown")
+            if type_str is "":
+                pass
+            # print(type_str)
+            data = CommonParser().parser(json_data=attributes, type_str=d.get("type", "unknown"), pretty=pretty)
             if type(data) != dict:
                 raise Exception("Error parsed data type")
             res.append(data)
@@ -64,6 +70,11 @@ class CommonBridge():
 
     def __create_xlsx(self, data: list, name: str) -> str:
         xlsx = ExcelWriter()
-        xlsx.write_sheet(dic=data, name=name)
-        xlsx.save_workbook("aaa")
-        return "aaa.xlsx"
+        for d in data:
+            # print(d)
+            xlsx.write_sheet(dic=d, name=d.get("type", "unknown"))
+    
+        if name == None:
+            name = "sample"
+        xlsx.save_workbook(name)
+        return name + ".xlsx"

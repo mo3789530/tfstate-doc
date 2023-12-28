@@ -36,4 +36,4 @@ class ExcelWriter:
         index = sheet.max_row + 1
         for key, value in dic.items():
             sheet.cell(row=index, column=1).value = key
-            sheet.cell(row=index, column=2).value = value
+            sheet.cell(row=index, column=2).value = str(value)

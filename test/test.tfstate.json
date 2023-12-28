@@ -1185,7 +1185,7 @@
         },
         {
             "mode": "managed",
-            "type": "",
+            "type": "aws_rds_cluster_instance",
             "name": "database",
             "provider": "provider.aws",
             "instances": [
